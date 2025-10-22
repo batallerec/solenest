@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,27 +7,245 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
   
   body {
     font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #2D2D2D 100%);
+    color: #E5E5E5;
+    overflow-x: hidden;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1A1A1A;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #F59E0B, #D97706);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #D97706, #B45309);
   }
 }
 
 @layer components {
+  /* Luxury Button Styles */
   .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-luxury-dark font-semibold py-4 px-8 rounded-xl transition-all duration-500 transform hover:scale-105 hover:shadow-glow-lg shadow-luxury;
   }
-  
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-primary:hover::before {
+    @apply opacity-100;
+  }
+
   .btn-secondary {
-    @apply bg-white border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105;
+    @apply relative overflow-hidden bg-transparent border-2 border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-luxury-dark font-semibold py-4 px-8 rounded-xl transition-all duration-500 transform hover:scale-105 hover:shadow-glow backdrop-blur-sm;
   }
-  
+
+  .btn-secondary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-gold-500/10 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-secondary:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Luxury Card Styles */
+  .luxury-card {
+    @apply bg-gradient-to-br from-luxury-charcoal/80 to-luxury-slate/80 backdrop-blur-xl border border-white/10 rounded-2xl shadow-luxury hover:shadow-luxury-lg transition-all duration-500;
+  }
+
+  .luxury-card-hover {
+    @apply transform hover:-translate-y-2 hover:scale-105 transition-all duration-500;
+  }
+
+  /* Glassmorphism Effects */
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-xl border border-white/5;
+  }
+
+  /* Section Styling */
   .section-padding {
-    @apply py-16 px-4 sm:px-6 lg:px-8;
+    @apply py-20 px-4 sm:px-6 lg:px-8;
   }
   
   .container-max {
     @apply max-w-7xl mx-auto;
+  }
+
+  /* Luxury Typography */
+  .heading-primary {
+    @apply font-display font-bold text-6xl sm:text-7xl lg:text-8xl leading-tight;
+  }
+
+  .heading-secondary {
+    @apply font-display font-semibold text-4xl sm:text-5xl lg:text-6xl leading-tight;
+  }
+
+  .heading-tertiary {
+    @apply font-display font-semibold text-2xl sm:text-3xl lg:text-4xl leading-tight;
+  }
+
+  .text-luxury {
+    @apply text-luxury-platinum;
+  }
+
+  .text-muted-luxury {
+    @apply text-luxury-silver;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-dark {
+    @apply bg-gradient-to-r from-luxury-silver via-luxury-platinum to-white bg-clip-text text-transparent;
+  }
+
+  /* Shimmer Effect */
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-shimmer;
+  }
+
+  /* Glow Effects */
+  .glow-gold {
+    @apply shadow-glow;
+  }
+
+  .glow-gold-lg {
+    @apply shadow-glow-lg;
+  }
+
+  /* Luxury Animations */
+  .animate-luxury-fade {
+    animation: luxuryFade 1s ease-out;
+  }
+
+  .animate-luxury-slide {
+    animation: luxurySlide 1s ease-out;
+  }
+
+  /* Custom Keyframes */
+  @keyframes luxuryFade {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes luxurySlide {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Luxury Background Patterns */
+  .luxury-bg {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+  }
+
+  /* Premium Product Card */
+  .product-card {
+    @apply luxury-card luxury-card-hover cursor-pointer;
+  }
+
+  .product-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl;
+  }
+
+  /* Luxury Navigation */
+  .nav-link {
+    @apply relative text-luxury-platinum hover:text-gold-500 transition-colors duration-300 font-medium;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gold-500 to-gold-600 transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  /* Luxury Form Elements */
+  .luxury-input {
+    @apply bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300 backdrop-blur-sm;
+  }
+
+  .luxury-textarea {
+    @apply luxury-input resize-none;
+  }
+
+  /* Floating Label Styles */
+  .floating-label-group {
+    @apply relative;
+  }
+
+  .floating-label-input {
+    @apply bg-gray-800 border border-gray-600 rounded-lg px-4 pt-6 pb-2 text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all duration-300 backdrop-blur-sm w-full;
+  }
+
+  .floating-label {
+    @apply absolute left-4 text-gray-400 transition-all duration-300 pointer-events-none;
+  }
+
+  .floating-label.focused,
+  .floating-label.has-value {
+    @apply top-1 text-xs text-gold-500;
+  }
+
+  .floating-label.unfocused {
+    @apply top-1/2 transform -translate-y-1/2;
+  }
+
+  /* Luxury Badge */
+  .luxury-badge {
+    @apply bg-gradient-to-r from-gold-500 to-gold-600 text-luxury-dark font-semibold px-4 py-2 rounded-full shadow-glow;
+  }
+
+  /* Luxury Divider */
+  .luxury-divider {
+    @apply h-px bg-gradient-to-r from-transparent via-gold-500/30 to-transparent;
   }
 }

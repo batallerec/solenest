@@ -5,6 +5,7 @@ import About from './components/About'
 import Features from './components/Features'
 import ProductGallery from './components/ProductGallery'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Features />
       <ProductGallery />
       <Footer />
+      <ScrollToTop />
     </div>
   )
 }
